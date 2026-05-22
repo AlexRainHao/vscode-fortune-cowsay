@@ -1,0 +1,135 @@
+{
+  "name": "fortune-cowsay",
+  "displayName": "Fortune Cowsay",
+  "description": "Show a random fortune with a cowsay ASCII art on VSCode startup",
+  "version": "0.1.0",
+  "publisher": "AlexRainHao",
+  "author": {
+    "name": "AlexRainHao",
+    "url": "https://github.com/AlexRainHao"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AlexRainHao/vscode-fortune-cowsay"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "icon": "./assets/icon.png",
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "fortune",
+    "cowsay",
+    "startup",
+    "fun",
+    "quotes"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "fortune-cowsay.enable",
+        "title": "Fortune Cowsay: Enable"
+      },
+      {
+        "command": "fortune-cowsay.disable",
+        "title": "Fortune Cowsay: Disable"
+      },
+      {
+        "command": "fortune-cowsay.showNow",
+        "title": "Fortune Cowsay: Show Fortune Now"
+      },
+      {
+        "command": "fortune-cowsay.addQuote",
+        "title": "Fortune Cowsay: Add Custom Quote"
+      },
+      {
+        "command": "fortune-cowsay.removeQuote",
+        "title": "Fortune Cowsay: Remove Custom Quote"
+      },
+      {
+        "command": "fortune-cowsay.listQuotes",
+        "title": "Fortune Cowsay: List All Quotes"
+      },
+      {
+        "command": "fortune-cowsay.resetToDefaults",
+        "title": "Fortune Cowsay: Reset to Default Quotes"
+      }
+    ],
+    "configuration": {
+      "title": "Fortune Cowsay",
+      "properties": {
+        "fortuneCowsay.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable Fortune Cowsay on startup"
+        },
+        "fortuneCowsay.cowCharacter": {
+          "type": "string",
+          "enum": [
+            "cow",
+            "tux",
+            "dragon",
+            "ghostbusters",
+            "sheep"
+          ],
+          "default": "cow",
+          "description": "Choose which ASCII character delivers your fortune"
+        },
+        "fortuneCowsay.quoteType": {
+          "type": "string",
+          "enum": [
+            "short",
+            "long",
+            "both"
+          ],
+          "default": "short",
+          "description": "Show short quotes, long quotes, or both"
+        },
+        "fortuneCowsay.useCustomOnly": {
+          "type": "boolean",
+          "default": false,
+          "description": "When true, only show quotes from your custom collection"
+        },
+        "fortuneCowsay.customQuotes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string"
+              },
+              "author": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "text"
+            ]
+          },
+          "default": [],
+          "description": "Your custom fortune quotes"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "typescript": "^5.3.0"
+  }
+}
